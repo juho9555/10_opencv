@@ -20,7 +20,7 @@ result = reader.readtext(img_path)
 print(result)
 
 # 5. 출력 오류 수정
-FIX_TARGETS = {'어어린이보호': '어린이보호', '(어린이보호구예':'어린이보호구역'}
+FIX_TARGETS = {'어어린이보호': '어린이보호'}
 
 def fix_duplicates_with_dict(text):
     if text in FIX_TARGETS:
@@ -28,7 +28,7 @@ def fix_duplicates_with_dict(text):
     return text
 
 # 4. 인식된 텍스트 확인해보기
-THRESHOLD = 0.06 # 신뢰도 0.06
+THRESHOLD = 0.9 # 신뢰도 0.9
 for bbox, text, conf in result:
     if conf >= THRESHOLD:
         fixed_text = fix_duplicates_with_dict(text)
