@@ -19,11 +19,20 @@ plt.show()
 result = reader.readtext(img_path)
 print(result)
 
+# 5. 출력 오류 수정
+FIX_TARGETS = {'어어린이보호': '어린이보호', '(어린이보호구예':'어린이보호구역'}
+
+def fix_duplicates_with_dict(text):
+    if text in FIX_TARGETS:
+        return FIX_TARGETS[text]
+    return text
+
 # 4. 인식된 텍스트 확인해보기
-THRESHOLD = 0.01 # 신뢰도 0.5
+THRESHOLD = 0.06 # 신뢰도 0.06
 for bbox, text, conf in result:
     if conf >= THRESHOLD:
-        print(f'{text} (conf: {conf:.2f})')
+        fixed_text = fix_duplicates_with_dict(text)
+        print(f'{fixed_text} (conf: {conf:.2f})')
 
         # numpy array로 변환 (정수형 좌표)
         pts = np.array(bbox, dtype=np.int32)
