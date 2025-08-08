@@ -2,10 +2,10 @@ import easyocr
 import cv2
 import matplotlib.pyplot as plt
 
-reader = easyocr.Reader(['ch_tra', 'en'], gpu=False)
+reader = easyocr.Reader(['ko', 'en'], gpu=False)
 
 # result = reader.readtext('chinese_tra.jpg')
-img_path = '../img/chinese_tra.jpg'
+img_path = '../img/korean.PNG'
 img = cv2.imread(img_path)
 
 # # 1. 이미지 불러오기
